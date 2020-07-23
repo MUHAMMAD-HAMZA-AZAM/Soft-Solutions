@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Soft_Solutions.Models.City>
+
+@{
+
+    var counter = 0;
+}
+
+<h2> City Records </h2>
+
+
+<button class="btn btn-success" onclick="location.href='@Url.Action("Add", "City")';return false;">Add New City</button>
+<br />
+<br />
+<table class="table table-bordered table-hover">
+   
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">City Name </th>
+            <th scope="col">Actions </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@(++counter)</th>
+                <td>@item.CityName</td>
+                <td>
+                    <a href="@Url.Action("Edit","City",new { id=item.CityId})" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit text-primary"></i></a>
+                    <a href="@Url.Action("Details","City",new { id=item.CityId})" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-eye text-primary"></i></a>
+                    <a href="@Url.Action("Delete","City",new { id=item.CityId})" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash-alt text-danger"></i></a>
+
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

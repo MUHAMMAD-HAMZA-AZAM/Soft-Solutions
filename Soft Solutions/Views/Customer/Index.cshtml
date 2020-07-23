@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Soft_Solutions.Models.Customer>
+
+
+
+@{
+
+    var counter = 0;
+}
+
+<h2> Customer Records </h2>
+
+
+<button class="btn btn-success" onclick="location.href='@Url.Action("AddCustomer", "Customer")';return false;">Add New Customer</button>
+<br />
+<br />
+<table class="table table-bordered table-hover">
+
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Registration Date </th>
+            <th scope="col"> Name  </th>
+            <th scope="col"> Gender  </th>
+            <th scope="col"> Designation  </th>
+            <th scope="col"> City  </th>
+            <th scope="col">Actions </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <th scope="row">@(++counter)</th>
+            <td>@item.RegistrationDate</td>
+            <td>@item.Name</td>
+            <td>@item.Gender</td>
+            <td>@item.Details</td>
+            <td>@item.City.CityName</td>
+
+            <td>
+                <a href="@Url.Action("Edit","Customer",new { id=item.Id})" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit text-primary"></i></a>
+                <a href="@Url.Action("Details","Customer",new { id=item.Id})" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-eye text-primary"></i></a>
+                <a href="@Url.Action("Delete","Customer",new { id=item.Id})" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash-alt text-danger"></i></a>
+
+            </td>
+
+        </tr>
+        }
+    </tbody>
+</table>
